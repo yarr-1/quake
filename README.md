@@ -62,6 +62,7 @@ This takes anomaly sequences and predicts the probability of a **M ≥ 4.0** ear
 
 ```bash
 python pipeline/train_lstm_risk.py
+```
 
 this outputs:
 
