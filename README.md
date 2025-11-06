@@ -40,7 +40,7 @@ python pipeline/make_labels.py
 
 this outputs:
 
-* decision_tree_input.csv
+* `decision_tree_input.csv
 
 ---
 
@@ -50,9 +50,27 @@ this outputs:
 python pipeline/train_decision_trees.py
 ```
 
-This outputs:
+this outputs:
 
 * `models/`decision_tree_model.pkl
+
+---
+
+### Step 4 — LSTM / Earthquake Probability
+
+This takes anomaly sequences and predicts the probability of a **M ≥ 4.0** earthquake occurring in the next 5 days.
+
+```bash
+python pipeline/train_lstm_risk.py
+
+this outputs:
+
+* `models/`lstm_risk.keras
+* `models/`lstm_scaler.save
+* `models/`lstm_best.keras
+* `lstm_roc.png
+* `lstm_history.png
+* `lstm_test_predictions.csv
 
 ---
 
