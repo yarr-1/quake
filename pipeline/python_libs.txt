@@ -1,0 +1,13 @@
+pandas
+numpy
+requests
+beautifulsoup4
+lxml
+georinex
+tensorflow
+scikit-learn
+joblib
+python-dotenv
+supabase
+selenium
+webdriver-manager
