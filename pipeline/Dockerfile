@@ -1,5 +1,5 @@
-# Use official Python 3.12 slim base
-FROM python:3.12-slim
+# Use official Python 3.12 bullseye base
+FROM python:3.12-bullseye
 
 # Fix apt issues before installing packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -21,12 +21,12 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
  && apt-get update && apt-get install -y google-chrome-stable \
  && rm -rf /var/lib/apt/lists/*
 
-# install chromedriver matching the installed chrome
-RUN CHROME_VERSION=$(google-chrome --product-version | cut -d '.' -f 1) && \
-    CHROMEDRIVER_URL=$(wget -qO- "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION") && \
-    wget -q "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_URL}/chromedriver_linux64.zip" -O /tmp/chromedriver.zip && \
-    unzip /tmp/chromedriver.zip -d /usr/local/bin/ && \
-    rm /tmp/chromedriver.zip && chmod +x /usr/local/bin/chromedriver
+# Install specific compatible ChromeDriver version
+RUN wget -q https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.108/linux64/chromedriver-linux64.zip -O /tmp/chromedriver.zip \
+    && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
+    && mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
+    && chmod +x /usr/local/bin/chromedriver \
+    && rm -rf /tmp/chromedriver.zip /usr/local/bin/chromedriver-linux64
 
 # set workdir
 WORKDIR /app
