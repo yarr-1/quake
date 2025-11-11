@@ -1,6 +1,13 @@
 # Use official Python 3.12 slim base
 FROM python:3.12-slim
 
+# Fix apt issues before installing packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget unzip gnupg2 ca-certificates fonts-liberation \
+    libnss3 libgconf-2-4 libatk1.0-0 libatk-bridge2.0-0 libx11-xcb1 \
+    libxcomposite1 libxdamage1 libxrandr2 libgbm1 xvfb curl \
+ && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # install dependencies required for headless chrome
 RUN apt-get update && apt-get install -y \
     wget unzip gnupg2 ca-certificates fonts-liberation \
