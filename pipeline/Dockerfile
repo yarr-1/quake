@@ -42,4 +42,4 @@ RUN if [ -f /app/requirements.txt ]; then pip install -r /app/requirements.txt; 
 COPY . /app
 
 # default command (Render will override with cron command)
-CMD ["python", "pipeline/run_realtime_inference.py"]
+CMD ["uvicorn", "pipeline.api:app", "--host", "0.0.0.0", "--port", "8000"]
