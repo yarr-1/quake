@@ -11,3 +11,5 @@ python-dotenv
 supabase
 selenium
 webdriver-manager
+fastapi
+uvicorn
