@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: quake-pipeline
+    env: docker
+    dockerfilePath: ./Dockerfile
